@@ -1,21 +1,17 @@
 "use client";
 
-import React, { useContext } from "react";
 import { NextUIProvider } from "@nextui-org/react";
-import { ThemeContext } from "./Context/themeContext";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { AppProvider } from "./Context/appContext";
 
-export default function NextUiProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { theme } = useContext(ThemeContext);
-
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <NextUIProvider>
-      <div className={`${theme} dark:bg-gray-800 dark:text-gray-50`}>
-        {children}
-      </div>
-    </NextUIProvider>
+    <AppProvider>
+      <NextUIProvider>
+        <NextThemesProvider attribute="class" defaultTheme="light">
+          {children}
+        </NextThemesProvider>
+      </NextUIProvider>
+    </AppProvider>
   );
 }

@@ -1,11 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Raleway } from "next/font/google";
 import Appbar from "./Components/Appbar";
-import { ThemeProvider } from "./Context/themeContext";
-import NextUiProvider from "./provider";
 
-const inter = Inter({ subsets: ["latin"] });
+import Providers from "./provider";
+
+const font = Raleway({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NextUI-Demo",
@@ -19,13 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider>
-          <NextUiProvider>
-            <Appbar />
-            {children}
-          </NextUiProvider>
-        </ThemeProvider>
+      <body className={font.className}>
+        <Providers>
+          <Appbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

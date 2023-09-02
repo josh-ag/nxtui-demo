@@ -1,48 +1,56 @@
 "use client";
 
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import { IoMoon, IoSunny } from "react-icons/io5";
 import { Button } from "@nextui-org/button";
 import { Link as UiLink } from "@nextui-org/react";
 import Link from "next/link";
-import { ThemeContext } from "../Context/themeContext";
+import { useTheme } from "next-themes";
 
 export default function Appbar() {
-  // @useContext
-  const { theme, setTheme } = useContext(ThemeContext);
+  //@Internal state
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const themeIcon = theme === "light" ? <IoMoon /> : <IoSunny />;
 
   const toggleTheme = () => {
-    switch (theme) {
-      case "light":
-        setTheme("dark");
-        break;
-      case "dark":
-        setTheme("light");
-        break;
-      default:
-        "light";
-    }
+    if (theme === "light") return setTheme("dark");
+    return setTheme("light");
   };
 
   return (
-    <div className="bg-blue-500 p-4">
+    <div className="bg-blue-500 h-14 flex items-center justify-center px-4">
       <div className="container mx-auto flex items-center justify-between">
-        <Link href="/" className="font-semibold text-2xl">
+        <UiLink
+          as={Link}
+          href="/"
+          className="font-semibold text-2xl text-gray-100"
+        >
           NextUI Demo
-        </Link>
+        </UiLink>
 
         <div className="flex space-x-2 items-center">
           <Button
-            variant="faded"
+            variant="flat"
             as={Link}
             href="/about"
             className="font-medium"
           >
             About
           </Button>
-          <Button variant="faded" onClick={toggleTheme}>
+          <Button
+            variant="flat"
+            onClick={toggleTheme}
+            className="light:text-gray-700"
+          >
             {themeIcon}
           </Button>
         </div>

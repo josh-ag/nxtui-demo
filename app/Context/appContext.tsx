@@ -9,17 +9,17 @@ interface ContextInterface {
   setTheme: (arg: string) => void;
 }
 
-export const ThemeContext = createContext<ContextInterface>({
+export const AppContext = createContext<ContextInterface>({
   theme: "",
   setTheme: (arg: string) => arg,
 });
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<string>("light");
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <AppContext.Provider value={{ theme, setTheme }}>
       {children}
-    </ThemeContext.Provider>
+    </AppContext.Provider>
   );
 };
