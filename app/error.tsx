@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@nextui-org/react";
+
 export default function Error({
   error,
   reset,
@@ -15,12 +17,9 @@ export default function Error({
         Message:<span className="font-semibold">&rarr; {error.message}</span>
       </p>
 
-      <button
-        className="text-base bg-blue-500 px-4 py-1 rounded-md mt-6"
-        onClick={() => reset()}
-      >
+      <Button variant="ghost" className="mt-8" onClick={() => reset()}>
         Reload
-      </button>
+      </Button>
     </div>
   );
 }

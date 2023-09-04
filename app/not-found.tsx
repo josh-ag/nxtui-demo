@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -8,12 +9,9 @@ export default function NotFound() {
       <h2 className="text-4xl font-semibold">Whoops!</h2>
       <h4 className="text-lg">The page your looking for does not exist</h4>
 
-      <Link
-        href="/"
-        className="px-4 py-1 rounded-md mt-8 bg-gray-200 text-gray-700"
-      >
+      <Button as={Link} variant="ghost" href="/" className="mt-8">
         Return Home
-      </Link>
+      </Button>
     </div>
   );
 }

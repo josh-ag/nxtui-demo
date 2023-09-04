@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import Appbar from "./Components/Appbar";
 
 import Providers from "./provider";
+import NavbarComponent from "./Components/Navbar";
 
 const font = Raleway({ subsets: ["latin"] });
 
@@ -21,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <Providers>
-          <Appbar />
+          {/* <Appbar />
+           */}
+          <NavbarComponent />
           {children}
         </Providers>
       </body>
