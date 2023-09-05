@@ -7,7 +7,7 @@ export default function Home() {
         className="flex flex-col items-center justify-center container mx-auto p-4 space-y-8"
         id="Showcase"
       >
-        <div className="max-w-md">
+        <div>
           <h4 className="text-4xl lg:text-6xl font-semibold text-center">
             Welcome
           </h4>
@@ -15,7 +15,7 @@ export default function Home() {
             NextUI Demo
           </h4>
         </div>
-        <p className="text-base text-center">
+        <p className="text-base text-center max-w-2xl">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam et a
           recusandae. Veritatis illum ex reiciendis animi. Eos, illo amet?
         </p>

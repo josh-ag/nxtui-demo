@@ -20,7 +20,6 @@ import { IoMoon, IoSunny } from "react-icons/io5";
 export default function NavbarComponent() {
   //@Internal state
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
   const { theme, setTheme } = useTheme();
 
   const themeIcon = theme === "light" ? <IoMoon /> : <IoSunny />;
@@ -59,8 +58,20 @@ export default function NavbarComponent() {
           aria-label={isMenuOpen ? "menu close" : "menu open"}
           className="sm:hidden"
         />
+
         <NavbarBrand>
-          <Link href="/" className="font-bold text-lg text-inherit">
+          <Link
+            href="/"
+            className="font-bold text-lg flex items-center gap-2 text-inherit"
+          >
+            <Button
+              size="sm"
+              isIconOnly
+              variant="shadow"
+              className="font-light text-lg  hidden sm:flex"
+            >
+              N
+            </Button>
             NextUI Demo
           </Link>
         </NavbarBrand>
@@ -97,9 +108,10 @@ export default function NavbarComponent() {
         </NavbarItem>
         <NavbarItem>
           <Button
+            color="default"
+            isIconOnly
             variant="flat"
             onClick={toggleTheme}
-            className="light:text-gray-700"
           >
             {themeIcon}
           </Button>
