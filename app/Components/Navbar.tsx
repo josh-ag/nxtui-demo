@@ -18,17 +18,10 @@ import { useTheme } from "next-themes";
 import { IoMoon, IoSunny } from "react-icons/io5";
 
 export default function NavbarComponent() {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   //@Internal state
-  const [mounted, setMounted] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   const themeIcon = theme === "light" ? <IoMoon /> : <IoSunny />;
 
@@ -48,7 +41,6 @@ export default function NavbarComponent() {
     { name: "My Settings", path: "/settings" },
     { name: "Team Settings", path: "/teamsetting" },
     { name: "Help & Feedback", path: "/help" },
-    { name: "Log Out", path: "/logout" },
   ];
   const navbarLinks = [
     { name: "Features", path: "/features" },
@@ -122,13 +114,7 @@ export default function NavbarComponent() {
             <NavbarMenuItem key={index}>
               <UILink
                 as={Link}
-                color={
-                  isActive
-                    ? "primary"
-                    : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
+                color={isActive ? "primary" : "foreground"}
                 className={`w-full hover:text-primary active:text-primary`}
                 size="lg"
                 href={item.path}
@@ -138,6 +124,17 @@ export default function NavbarComponent() {
             </NavbarMenuItem>
           );
         })}
+        <NavbarMenuItem>
+          <UILink
+            as={Link}
+            color="danger"
+            className={`w-full`}
+            size="lg"
+            href="/logout"
+          >
+            Logout
+          </UILink>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
